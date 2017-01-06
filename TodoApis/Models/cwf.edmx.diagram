@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4a2128386f3d42c1b5d760f76f0a5a1c" Name="Diagram1">
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Database_RegisteredProduct" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Databas" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Instance_RegisteredProduct" Width="1.5" PointX="6" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Instance" Width="1.5" PointX="1.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.License" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Permission" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ProductConfig" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ProductMigration" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ProductWidgetConfig" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.RegisteredProduct" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Role" Width="1.5" PointX="3" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.SSRSReportConfiguration" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Tag" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.User" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ViewColumn" Width="1.5" PointX="6" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ViewConfig" Width="1.5" PointX="3.75" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.message" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.version" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ActionsPool" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Alert" Width="1.5" PointX="3" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Alerts_Metadata" Width="1.5" PointX="3" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Audit_Log" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.Permission_Instances" Width="1.5" PointX="8.5" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.RegisteredProductURL" Width="1.5" PointX="3" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.UserGroup" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.UsersProductWidgetConfig" Width="1.5" PointX="5.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.ViewColumnWidget" Width="1.5" PointX="8.25" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="IderaCWFRepositoryModel.shared_data" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_ProductRegisteredDatabases_Database" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_ProductRegisteredDatabases_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_DatabaseID" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Databases_Instance" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_ProductRegisteredInstances_Instance" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_ProductRegisteredInstances_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_InstanceID" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Permission_Instances_Instance" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Licenses_RegisteredProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Permission_Instances_Permission" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Permissions_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Permissions_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Permissions_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Product_ProductWidgetConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_UsersProductWidgetConfig_ProductWidgetConfig" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Widget_ViewColumnWidgets" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Alerts_Metadata_RegisteredProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Alerts_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_RegisteredProductURLs_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Roles_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Tags_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_UserGroups_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_UsersProductWidgetConfig_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_Column_ViewColumnWidgets" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.FK_View_ViewColumn" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.RegisteredTag_Databases" ManuallyRouted="false" />
+        <AssociationConnector Association="IderaCWFRepositoryModel.RegisteredTag_Instances" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

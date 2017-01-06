@@ -1,0 +1,2332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IderaCWFRepositoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.ActionsPool' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ActionsPool">
+          <Key>
+            <PropertyRef Name="Action" />
+          </Key>
+          <Property Name="Action" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Params" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.Alerts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Alerts">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="AlertCategory" />
+            <PropertyRef Name="Metric" />
+            <PropertyRef Name="Value" />
+            <PropertyRef Name="Severity" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="AlertCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Metric" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Severity" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="LastActiveTime" Type="datetime" />
+          <Property Name="Instance" Type="nvarchar" MaxLength="255" />
+          <Property Name="Database" Type="nvarchar" MaxLength="255" />
+          <Property Name="Table" Type="nvarchar" MaxLength="255" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.Alerts_Metadata' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Alerts_Metadata">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Metric" />
+            <PropertyRef Name="Message" />
+            <PropertyRef Name="Preview" />
+            <PropertyRef Name="PluralMessage" />
+            <PropertyRef Name="PluralPreview" />
+            <PropertyRef Name="KB" />
+            <PropertyRef Name="LinkToWiki" />
+            <PropertyRef Name="LinkToDetails" />
+            <PropertyRef Name="LinkToDashboard" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Metric" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="Preview" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="PluralMessage" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="PluralPreview" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="KB" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LinkToWiki" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="LinkToDetails" Type="nvarchar" MaxLength="2056" Nullable="false" />
+          <Property Name="LinkToDashboard" Type="nvarchar" MaxLength="2056" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.Audit_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Audit_Log">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagID" Type="ntext" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="200" />
+          <Property Name="TagDescription" Type="nvarchar" MaxLength="1024" />
+          <Property Name="TagProductID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Changes" Type="ntext" />
+          <Property Name="InstanceID" Type="int" />
+          <Property Name="DatabaseID" Type="int" />
+          <Property Name="Exception" Type="nvarchar" MaxLength="2056" />
+          <Property Name="SourceProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="Database-RegisteredProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="DatabaseID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DatabaseID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Databases">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UTCFirstSeen" Type="datetime" Nullable="false" />
+          <Property Name="UTCLastSeen" Type="datetime" Nullable="false" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="255" />
+          <Property Name="InstanceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instance-RegisteredProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="InstanceID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="InstanceID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instances">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UTCFirstSeen" Type="datetime" Nullable="false" />
+          <Property Name="UTCLastSeen" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="30" />
+          <Property Name="Edition" Type="nvarchar" MaxLength="255" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="255" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Licenses">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="KeyString" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Repository" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="IsTrial" Type="bit" Nullable="false" />
+          <Property Name="IsPermanent" Type="bit" Nullable="false" />
+          <Property Name="IsEnterprise" Type="bit" Nullable="false" />
+          <Property Name="LicenseAboutToExpire" Type="bit" Nullable="false" />
+          <Property Name="Expiration" Type="datetime" Nullable="false" />
+          <Property Name="DaysToExpire" Type="int" Nullable="false" />
+          <Property Name="LicensedServers" Type="int" Nullable="false" />
+          <Property Name="MonitoredServers" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="WebURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RestURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.Permission_Instances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Permission_Instances">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="int" Nullable="false" />
+          <Property Name="InstanceID" Type="int" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductConfig">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductMigrations">
+          <Key>
+            <PropertyRef Name="AttemptID" />
+          </Key>
+          <Property Name="AttemptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="MigrationStatus" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedOn" Type="datetime" Nullable="false" />
+          <Property Name="MigratedBy" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DestinationHost" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DestinationPort" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Result" Type="text" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductWidgetConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="WidgetType" Type="varchar" MaxLength="255" />
+          <Property Name="NavigationLink" Type="varchar" MaxLength="255" />
+          <Property Name="PackageURI" Type="varchar" MaxLength="255" />
+          <Property Name="DataURI" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Version" Type="varchar" MaxLength="255" />
+          <Property Name="Settings" Type="text" />
+          <Property Name="DefaultViews" Type="varchar" MaxLength="500" />
+          <Property Name="Collapsed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegisteredProducts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegisteringUser" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RegistrationDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="InstanceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ConnectionUser" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ConnectionPassword" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="JarFile" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DefaultPage" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RestFile" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsLoadable" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="int" />
+          <Property Name="ProductServicesHost" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductServicesPort" Type="int" Nullable="false" />
+          <Property Name="IsMigrating" Type="bit" />
+          <Property Name="MigrationStatus" Type="int" />
+          <Property Name="IsTaggable" Type="bit" Nullable="false" />
+          <Property Name="IsRedirectable" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.RegisteredProductURLs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegisteredProductURLs">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="WebURL" />
+            <PropertyRef Name="RestURL" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="WebURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RestURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.RegisteredTag-Databases' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegisteredTag-Databases">
+          <Key>
+            <PropertyRef Name="DatabaseID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="DatabaseID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.RegisteredTag-Instances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RegisteredTag-Instances">
+          <Key>
+            <PropertyRef Name="InstanceID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="InstanceID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSRSReportConfiguration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportInstance" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReportURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="WebServiceURL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReportUserName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReportUserPassword" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.UserGroups' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.UsersProductWidgetConfig' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UsersProductWidgetConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductWidgetConfigId" />
+            <PropertyRef Name="Settings" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ProductWidgetConfigId" Type="int" Nullable="false" />
+          <Property Name="Settings" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewColumn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ViewID" Type="int" Nullable="false" />
+          <Property Name="Width" Type="varchar" MaxLength="20" />
+          <Property Name="ColumnOrder" Type="int" Nullable="false" />
+          <Property Name="Settings" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.Common.ViewColumnWidgets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ViewColumnWidgets">
+          <Key>
+            <PropertyRef Name="WidgetID" />
+            <PropertyRef Name="ColumnID" />
+            <PropertyRef Name="WidgetOrder" />
+            <PropertyRef Name="Collapsed" />
+          </Key>
+          <Property Name="WidgetID" Type="int" Nullable="false" />
+          <Property Name="ColumnID" Type="int" Nullable="false" />
+          <Property Name="WidgetOrder" Type="int" Nullable="false" />
+          <Property Name="Collapsed" Type="bit" Nullable="false" />
+          <Property Name="Settings" Type="text" />
+        </EntityType>
+        <EntityType Name="ViewConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TabOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="messages">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IderaCWFRepository.dbo.shared_data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="shared_data">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="datetime" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="value" Type="ntext" Nullable="false" />
+          <Property Name="datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="versions">
+          <Key>
+            <PropertyRef Name="version" />
+          </Key>
+          <Property Name="version" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ordinal" Type="decimal" Precision="38" Scale="0" StoreGeneratedPattern="Computed" />
+          <Property Name="timestamp" Type="datetime" Nullable="false" />
+          <Property Name="upgraded" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Alerts_Metadata_RegisteredProducts">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alerts_Metadata" Type="Self.Alerts_Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Alerts_Metadata">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_Products">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alerts" Type="Self.Alerts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Column_ViewColumnWidgets">
+          <End Role="ViewColumn" Type="Self.ViewColumn" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumnWidgets" Type="Self.ViewColumnWidgets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewColumn">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumnWidgets">
+              <PropertyRef Name="ColumnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatabaseID">
+          <End Role="Databases" Type="Self.Databases" Multiplicity="0..1" />
+          <End Role="Audit_Log" Type="Self.Audit_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Databases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Audit_Log">
+              <PropertyRef Name="DatabaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Databases_Instance">
+          <End Role="Instances" Type="Self.Instances" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Databases" Type="Self.Databases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Databases">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstanceID">
+          <End Role="Instances" Type="Self.Instances" Multiplicity="0..1" />
+          <End Role="Audit_Log" Type="Self.Audit_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Audit_Log">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Licenses_RegisteredProducts">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Licenses" Type="Self.Licenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Licenses">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Instances_Instance">
+          <End Role="Instances" Type="Self.Instances" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permission_Instances" Type="Self.Permission_Instances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission_Instances">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Instances_Permission">
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permission_Instances" Type="Self.Permission_Instances" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="PermissionID" />
+            </Principal>
+            <Dependent Role="Permission_Instances">
+              <PropertyRef Name="PermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Products">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductWidgetConfig">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductWidgetConfig">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredDatabases_Database">
+          <End Role="Databases" Type="Self.Databases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Database-RegisteredProduct" Type="Self.Database-RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Databases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Database-RegisteredProduct">
+              <PropertyRef Name="DatabaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredDatabases_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Database-RegisteredProduct" Type="Self.Database-RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Database-RegisteredProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredInstances_Instance">
+          <End Role="Instances" Type="Self.Instances" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Instance-RegisteredProduct" Type="Self.Instance-RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instance-RegisteredProduct">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredInstances_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Instance-RegisteredProduct" Type="Self.Instance-RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instance-RegisteredProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductTagsDatabase_Database">
+          <End Role="Databases" Type="Self.Databases" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredTag-Databases" Type="Self.RegisteredTag-Databases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Databases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredTag-Databases">
+              <PropertyRef Name="DatabaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductTagsDatabase_Tag">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredTag-Databases" Type="Self.RegisteredTag-Databases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredTag-Databases">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductTagsInstance_Instance">
+          <End Role="Instances" Type="Self.Instances" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredTag-Instances" Type="Self.RegisteredTag-Instances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredTag-Instances">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductTagsInstance_Tag">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredTag-Instances" Type="Self.RegisteredTag-Instances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredTag-Instances">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductURLs_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredProductURLs" Type="Self.RegisteredProductURLs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredProductURLs">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roles_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProducts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Group">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProductWidgetConfig_ProductWidgetConfig">
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProductWidgetConfig" Type="Self.UsersProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWidgetConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersProductWidgetConfig">
+              <PropertyRef Name="ProductWidgetConfigId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProductWidgetConfig_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProductWidgetConfig" Type="Self.UsersProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersProductWidgetConfig">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_View_ViewColumn">
+          <End Role="ViewConfig" Type="Self.ViewConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumn" Type="Self.ViewColumn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumn">
+              <PropertyRef Name="ViewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Widget_ViewColumnWidgets">
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumnWidgets" Type="Self.ViewColumnWidgets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWidgetConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumnWidgets">
+              <PropertyRef Name="WidgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IderaCWFRepositoryModelStoreContainer">
+          <EntitySet Name="Database-RegisteredProduct" EntityType="Self.Database-RegisteredProduct" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Databases" EntityType="Self.Databases" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Instance-RegisteredProduct" EntityType="Self.Instance-RegisteredProduct" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Instances" EntityType="Self.Instances" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Licenses" EntityType="Self.Licenses" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="ProductConfig" EntityType="Self.ProductConfig" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="ProductMigrations" EntityType="Self.ProductMigrations" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="ProductWidgetConfig" EntityType="Self.ProductWidgetConfig" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="RegisteredProducts" EntityType="Self.RegisteredProducts" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="SSRSReportConfiguration" EntityType="Self.SSRSReportConfiguration" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="ViewColumn" EntityType="Self.ViewColumn" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="ViewConfig" EntityType="Self.ViewConfig" Schema="Common" store:Type="Tables" />
+          <EntitySet Name="messages" EntityType="Self.messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="versions" EntityType="Self.versions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActionsPool" EntityType="Self.ActionsPool" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [ActionsPool].[Action] AS [Action], 
+    [ActionsPool].[Params] AS [Params]
+    FROM [Common].[ActionsPool] AS [ActionsPool]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Alerts" EntityType="Self.Alerts" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [Alerts].[ProductId] AS [ProductId], 
+    [Alerts].[AlertCategory] AS [AlertCategory], 
+    [Alerts].[Metric] AS [Metric], 
+    [Alerts].[Value] AS [Value], 
+    [Alerts].[Severity] AS [Severity], 
+    [Alerts].[StartTime] AS [StartTime], 
+    [Alerts].[LastActiveTime] AS [LastActiveTime], 
+    [Alerts].[Instance] AS [Instance], 
+    [Alerts].[Database] AS [Database], 
+    [Alerts].[Table] AS [Table], 
+    [Alerts].[Summary] AS [Summary]
+    FROM [Common].[Alerts] AS [Alerts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Alerts_Metadata" EntityType="Self.Alerts_Metadata" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [Alerts_Metadata].[ID] AS [ID], 
+    [Alerts_Metadata].[ProductId] AS [ProductId], 
+    [Alerts_Metadata].[Metric] AS [Metric], 
+    [Alerts_Metadata].[Message] AS [Message], 
+    [Alerts_Metadata].[Preview] AS [Preview], 
+    [Alerts_Metadata].[PluralMessage] AS [PluralMessage], 
+    [Alerts_Metadata].[PluralPreview] AS [PluralPreview], 
+    [Alerts_Metadata].[KB] AS [KB], 
+    [Alerts_Metadata].[LinkToWiki] AS [LinkToWiki], 
+    [Alerts_Metadata].[LinkToDetails] AS [LinkToDetails], 
+    [Alerts_Metadata].[LinkToDashboard] AS [LinkToDashboard]
+    FROM [Common].[Alerts_Metadata] AS [Alerts_Metadata]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Audit_Log" EntityType="Self.Audit_Log" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [Audit_Log].[ID] AS [ID], 
+    [Audit_Log].[TagID] AS [TagID], 
+    [Audit_Log].[TagName] AS [TagName], 
+    [Audit_Log].[TagDescription] AS [TagDescription], 
+    [Audit_Log].[TagProductID] AS [TagProductID], 
+    [Audit_Log].[UserID] AS [UserID], 
+    [Audit_Log].[UserName] AS [UserName], 
+    [Audit_Log].[Date] AS [Date], 
+    [Audit_Log].[Changes] AS [Changes], 
+    [Audit_Log].[InstanceID] AS [InstanceID], 
+    [Audit_Log].[DatabaseID] AS [DatabaseID], 
+    [Audit_Log].[Exception] AS [Exception], 
+    [Audit_Log].[SourceProductID] AS [SourceProductID]
+    FROM [Common].[Audit_Log] AS [Audit_Log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Permission_Instances" EntityType="Self.Permission_Instances" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [Permission_Instances].[PermissionID] AS [PermissionID], 
+    [Permission_Instances].[InstanceID] AS [InstanceID]
+    FROM [Common].[Permission_Instances] AS [Permission_Instances]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RegisteredProductURLs" EntityType="Self.RegisteredProductURLs" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [RegisteredProductURLs].[ProductID] AS [ProductID], 
+    [RegisteredProductURLs].[WebURL] AS [WebURL], 
+    [RegisteredProductURLs].[RestURL] AS [RestURL]
+    FROM [Common].[RegisteredProductURLs] AS [RegisteredProductURLs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RegisteredTag-Databases" EntityType="Self.RegisteredTag-Databases" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [RegisteredTag-Databases].[DatabaseID] AS [DatabaseID], 
+    [RegisteredTag-Databases].[TagID] AS [TagID]
+    FROM [Common].[RegisteredTag-Databases] AS [RegisteredTag-Databases]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RegisteredTag-Instances" EntityType="Self.RegisteredTag-Instances" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [RegisteredTag-Instances].[InstanceID] AS [InstanceID], 
+    [RegisteredTag-Instances].[TagID] AS [TagID]
+    FROM [Common].[RegisteredTag-Instances] AS [RegisteredTag-Instances]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [UserGroups].[GroupID] AS [GroupID], 
+    [UserGroups].[UserID] AS [UserID]
+    FROM [Common].[UserGroups] AS [UserGroups]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UsersProductWidgetConfig" EntityType="Self.UsersProductWidgetConfig" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [UsersProductWidgetConfig].[Id] AS [Id], 
+    [UsersProductWidgetConfig].[UserId] AS [UserId], 
+    [UsersProductWidgetConfig].[ProductWidgetConfigId] AS [ProductWidgetConfigId], 
+    [UsersProductWidgetConfig].[Settings] AS [Settings]
+    FROM [Common].[UsersProductWidgetConfig] AS [UsersProductWidgetConfig]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewColumnWidgets" EntityType="Self.ViewColumnWidgets" store:Type="Tables" store:Schema="Common">
+            <DefiningQuery>SELECT 
+    [ViewColumnWidgets].[WidgetID] AS [WidgetID], 
+    [ViewColumnWidgets].[ColumnID] AS [ColumnID], 
+    [ViewColumnWidgets].[WidgetOrder] AS [WidgetOrder], 
+    [ViewColumnWidgets].[Collapsed] AS [Collapsed], 
+    [ViewColumnWidgets].[Settings] AS [Settings]
+    FROM [Common].[ViewColumnWidgets] AS [ViewColumnWidgets]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="shared_data" EntityType="Self.shared_data" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [shared_data].[name] AS [name], 
+    [shared_data].[value] AS [value], 
+    [shared_data].[datetime] AS [datetime]
+    FROM [dbo].[shared_data] AS [shared_data]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Alerts_Metadata_RegisteredProducts" Association="Self.FK_Alerts_Metadata_RegisteredProducts">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Alerts_Metadata" EntitySet="Alerts_Metadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_Products" Association="Self.FK_Alerts_Products">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Column_ViewColumnWidgets" Association="Self.FK_Column_ViewColumnWidgets">
+            <End Role="ViewColumn" EntitySet="ViewColumn" />
+            <End Role="ViewColumnWidgets" EntitySet="ViewColumnWidgets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatabaseID" Association="Self.FK_DatabaseID">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="Audit_Log" EntitySet="Audit_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Databases_Instance" Association="Self.FK_Databases_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Databases" EntitySet="Databases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstanceID" Association="Self.FK_InstanceID">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Audit_Log" EntitySet="Audit_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licenses_RegisteredProducts" Association="Self.FK_Licenses_RegisteredProducts">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Licenses" EntitySet="Licenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Instances_Instance" Association="Self.FK_Permission_Instances_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Permission_Instances" EntitySet="Permission_Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Instances_Permission" Association="Self.FK_Permission_Instances_Permission">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="Permission_Instances" EntitySet="Permission_Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Products" Association="Self.FK_Permissions_Products">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Roles" Association="Self.FK_Permissions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Users" Association="Self.FK_Permissions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductWidgetConfig" Association="Self.FK_Product_ProductWidgetConfig">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredDatabases_Database" Association="Self.FK_ProductRegisteredDatabases_Database">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="Database-RegisteredProduct" EntitySet="Database-RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredDatabases_Product" Association="Self.FK_ProductRegisteredDatabases_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Database-RegisteredProduct" EntitySet="Database-RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredInstances_Instance" Association="Self.FK_ProductRegisteredInstances_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Instance-RegisteredProduct" EntitySet="Instance-RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredInstances_Product" Association="Self.FK_ProductRegisteredInstances_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Instance-RegisteredProduct" EntitySet="Instance-RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductTagsDatabase_Database" Association="Self.FK_RegisteredProductTagsDatabase_Database">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="RegisteredTag-Databases" EntitySet="RegisteredTag-Databases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductTagsDatabase_Tag" Association="Self.FK_RegisteredProductTagsDatabase_Tag">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="RegisteredTag-Databases" EntitySet="RegisteredTag-Databases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductTagsInstance_Instance" Association="Self.FK_RegisteredProductTagsInstance_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="RegisteredTag-Instances" EntitySet="RegisteredTag-Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductTagsInstance_Tag" Association="Self.FK_RegisteredProductTagsInstance_Tag">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="RegisteredTag-Instances" EntitySet="RegisteredTag-Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductURLs_Product" Association="Self.FK_RegisteredProductURLs_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="RegisteredProductURLs" EntitySet="RegisteredProductURLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Product" Association="Self.FK_Roles_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Product" Association="Self.FK_Tags_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Group" Association="Self.FK_UserGroups_Group">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProductWidgetConfig_ProductWidgetConfig" Association="Self.FK_UsersProductWidgetConfig_ProductWidgetConfig">
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfig" />
+            <End Role="UsersProductWidgetConfig" EntitySet="UsersProductWidgetConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProductWidgetConfig_Users" Association="Self.FK_UsersProductWidgetConfig_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProductWidgetConfig" EntitySet="UsersProductWidgetConfig" />
+          </AssociationSet>
+          <AssociationSet Name="FK_View_ViewColumn" Association="Self.FK_View_ViewColumn">
+            <End Role="ViewConfig" EntitySet="ViewConfig" />
+            <End Role="ViewColumn" EntitySet="ViewColumn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Widget_ViewColumnWidgets" Association="Self.FK_Widget_ViewColumnWidgets">
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfig" />
+            <End Role="ViewColumnWidgets" EntitySet="ViewColumnWidgets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IderaCWFRepositoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Database_RegisteredProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="DatabaseID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DatabaseID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Databas" Relationship="Self.FK_ProductRegisteredDatabases_Database" FromRole="Database_RegisteredProduct" ToRole="Databases" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_ProductRegisteredDatabases_Product" FromRole="Database_RegisteredProduct" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="Databas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UTCFirstSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UTCLastSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Owner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Database_RegisteredProduct" Relationship="Self.FK_ProductRegisteredDatabases_Database" FromRole="Databases" ToRole="Database_RegisteredProduct" />
+          <NavigationProperty Name="Audit_Log" Relationship="Self.FK_DatabaseID" FromRole="Databases" ToRole="Audit_Log" />
+          <NavigationProperty Name="Instance" Relationship="Self.FK_Databases_Instance" FromRole="Databases" ToRole="Instances" />
+          <NavigationProperty Name="Tags" Relationship="Self.RegisteredTag_Databases" FromRole="Databases" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Instance_RegisteredProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="InstanceID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="InstanceID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance" Relationship="Self.FK_ProductRegisteredInstances_Instance" FromRole="Instance_RegisteredProduct" ToRole="Instances" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_ProductRegisteredInstances_Product" FromRole="Instance_RegisteredProduct" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="Instance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UTCFirstSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UTCLastSeen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Edition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Databases" Relationship="Self.FK_Databases_Instance" FromRole="Instances" ToRole="Databases" />
+          <NavigationProperty Name="Instance_RegisteredProduct" Relationship="Self.FK_ProductRegisteredInstances_Instance" FromRole="Instances" ToRole="Instance_RegisteredProduct" />
+          <NavigationProperty Name="Audit_Log" Relationship="Self.FK_InstanceID" FromRole="Instances" ToRole="Audit_Log" />
+          <NavigationProperty Name="Permission_Instances" Relationship="Self.FK_Permission_Instances_Instance" FromRole="Instances" ToRole="Permission_Instances" />
+          <NavigationProperty Name="Tags" Relationship="Self.RegisteredTag_Instances" FromRole="Instances" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="License">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="KeyString" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Repository" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="IsTrial" Type="Boolean" Nullable="false" />
+          <Property Name="IsPermanent" Type="Boolean" Nullable="false" />
+          <Property Name="IsEnterprise" Type="Boolean" Nullable="false" />
+          <Property Name="LicenseAboutToExpire" Type="Boolean" Nullable="false" />
+          <Property Name="Expiration" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DaysToExpire" Type="Int32" Nullable="false" />
+          <Property Name="LicensedServers" Type="Int32" Nullable="false" />
+          <Property Name="MonitoredServers" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WebURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RestURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Licenses_RegisteredProducts" FromRole="Licenses" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Permission_Instances" Relationship="Self.FK_Permission_Instances_Permission" FromRole="Permissions" ToRole="Permission_Instances" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Permissions_Products" FromRole="Permissions" ToRole="RegisteredProducts" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Permissions_Roles" FromRole="Permissions" ToRole="Roles" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Permissions_Users" FromRole="Permissions" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ProductConfig">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductMigration">
+          <Key>
+            <PropertyRef Name="AttemptID" />
+          </Key>
+          <Property Name="AttemptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="MigrationStatus" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MigratedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationHost" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationPort" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductWidgetConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WidgetType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NavigationLink" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PackageURI" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DataURI" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultViews" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Collapsed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Product_ProductWidgetConfig" FromRole="ProductWidgetConfig" ToRole="RegisteredProducts" />
+          <NavigationProperty Name="UsersProductWidgetConfigs" Relationship="Self.FK_UsersProductWidgetConfig_ProductWidgetConfig" FromRole="ProductWidgetConfig" ToRole="UsersProductWidgetConfig" />
+          <NavigationProperty Name="ViewColumnWidgets" Relationship="Self.FK_Widget_ViewColumnWidgets" FromRole="ProductWidgetConfig" ToRole="ViewColumnWidgets" />
+        </EntityType>
+        <EntityType Name="RegisteredProduct">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegisteringUser" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShortName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InstanceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConnectionUser" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConnectionPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JarFile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DefaultPage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RestFile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsLoadable" Type="Boolean" Nullable="false" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="ProductServicesHost" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductServicesPort" Type="Int32" Nullable="false" />
+          <Property Name="IsMigrating" Type="Boolean" />
+          <Property Name="MigrationStatus" Type="Int32" />
+          <Property Name="IsTaggable" Type="Boolean" Nullable="false" />
+          <Property Name="IsRedirectable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Database_RegisteredProduct" Relationship="Self.FK_ProductRegisteredDatabases_Product" FromRole="RegisteredProducts" ToRole="Database_RegisteredProduct" />
+          <NavigationProperty Name="Instance_RegisteredProduct" Relationship="Self.FK_ProductRegisteredInstances_Product" FromRole="RegisteredProducts" ToRole="Instance_RegisteredProduct" />
+          <NavigationProperty Name="Licenses" Relationship="Self.FK_Licenses_RegisteredProducts" FromRole="RegisteredProducts" ToRole="Licenses" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_Permissions_Products" FromRole="RegisteredProducts" ToRole="Permissions" />
+          <NavigationProperty Name="ProductWidgetConfigs" Relationship="Self.FK_Product_ProductWidgetConfig" FromRole="RegisteredProducts" ToRole="ProductWidgetConfig" />
+          <NavigationProperty Name="Alerts_Metadata" Relationship="Self.FK_Alerts_Metadata_RegisteredProducts" FromRole="RegisteredProducts" ToRole="Alerts_Metadata" />
+          <NavigationProperty Name="Alerts" Relationship="Self.FK_Alerts_Products" FromRole="RegisteredProducts" ToRole="Alerts" />
+          <NavigationProperty Name="RegisteredProductURLs" Relationship="Self.FK_RegisteredProductURLs_Product" FromRole="RegisteredProducts" ToRole="RegisteredProductURLs" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Roles_Product" FromRole="RegisteredProducts" ToRole="Roles" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK_Tags_Product" FromRole="RegisteredProducts" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_Permissions_Roles" FromRole="Roles" ToRole="Permissions" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Roles_Product" FromRole="Roles" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="SSRSReportConfiguration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportInstance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebServiceURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportUserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportUserPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Tags_Product" FromRole="Tags" ToRole="RegisteredProducts" />
+          <NavigationProperty Name="Databases" Relationship="Self.RegisteredTag_Databases" FromRole="Tags" ToRole="Databases" />
+          <NavigationProperty Name="Instances" Relationship="Self.RegisteredTag_Instances" FromRole="Tags" ToRole="Instances" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permissions" Relationship="Self.FK_Permissions_Users" FromRole="Users" ToRole="Permissions" />
+          <NavigationProperty Name="UserGroups" Relationship="Self.FK_UserGroups_Group" FromRole="Users" ToRole="UserGroups" />
+          <NavigationProperty Name="UsersProductWidgetConfigs" Relationship="Self.FK_UsersProductWidgetConfig_Users" FromRole="Users" ToRole="UsersProductWidgetConfig" />
+        </EntityType>
+        <EntityType Name="ViewColumn">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ViewID" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ColumnOrder" Type="Int32" Nullable="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ViewColumnWidgets" Relationship="Self.FK_Column_ViewColumnWidgets" FromRole="ViewColumn" ToRole="ViewColumnWidgets" />
+          <NavigationProperty Name="ViewConfig" Relationship="Self.FK_View_ViewColumn" FromRole="ViewColumn" ToRole="ViewConfig" />
+        </EntityType>
+        <EntityType Name="ViewConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TabOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ViewColumns" Relationship="Self.FK_View_ViewColumn" FromRole="ViewConfig" ToRole="ViewColumn" />
+        </EntityType>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="message_id" />
+          </Key>
+          <Property Name="message_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="version">
+          <Key>
+            <PropertyRef Name="version1" />
+          </Key>
+          <Property Name="version1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ordinal" Type="Decimal" Precision="38" Scale="0" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="upgraded" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActionsPool">
+          <Key>
+            <PropertyRef Name="Action" />
+          </Key>
+          <Property Name="Action" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Params" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Alert">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="AlertCategory" />
+            <PropertyRef Name="Metric" />
+            <PropertyRef Name="Value" />
+            <PropertyRef Name="Severity" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="AlertCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Metric" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Severity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="LastActiveTime" Type="DateTime" Precision="3" />
+          <Property Name="Instance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Database" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Table" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Alerts_Products" FromRole="Alerts" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="Alerts_Metadata">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Metric" />
+            <PropertyRef Name="Message" />
+            <PropertyRef Name="Preview" />
+            <PropertyRef Name="PluralMessage" />
+            <PropertyRef Name="PluralPreview" />
+            <PropertyRef Name="KB" />
+            <PropertyRef Name="LinkToWiki" />
+            <PropertyRef Name="LinkToDetails" />
+            <PropertyRef Name="LinkToDashboard" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Metric" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Preview" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PluralMessage" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PluralPreview" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkToWiki" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkToDetails" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkToDashboard" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_Alerts_Metadata_RegisteredProducts" FromRole="Alerts_Metadata" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="Audit_Log">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TagName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TagDescription" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="TagProductID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Changes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceID" Type="Int32" />
+          <Property Name="DatabaseID" Type="Int32" />
+          <Property Name="Exception" Type="String" MaxLength="2056" FixedLength="false" Unicode="true" />
+          <Property Name="SourceProductID" Type="Int32" />
+          <NavigationProperty Name="Databas" Relationship="Self.FK_DatabaseID" FromRole="Audit_Log" ToRole="Databases" />
+          <NavigationProperty Name="Instance" Relationship="Self.FK_InstanceID" FromRole="Audit_Log" ToRole="Instances" />
+        </EntityType>
+        <EntityType Name="Permission_Instances">
+          <Key>
+            <PropertyRef Name="PermissionID" />
+          </Key>
+          <Property Name="PermissionID" Type="Int32" Nullable="false" />
+          <Property Name="InstanceID" Type="Int32" />
+          <NavigationProperty Name="Instance" Relationship="Self.FK_Permission_Instances_Instance" FromRole="Permission_Instances" ToRole="Instances" />
+          <NavigationProperty Name="Permission" Relationship="Self.FK_Permission_Instances_Permission" FromRole="Permission_Instances" ToRole="Permissions" />
+        </EntityType>
+        <EntityType Name="RegisteredProductURL">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="WebURL" />
+            <PropertyRef Name="RestURL" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="WebURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RestURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RegisteredProduct" Relationship="Self.FK_RegisteredProductURLs_Product" FromRole="RegisteredProductURLs" ToRole="RegisteredProducts" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserGroups_Group" FromRole="UserGroups" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UsersProductWidgetConfig">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="ProductWidgetConfigId" />
+            <PropertyRef Name="Settings" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ProductWidgetConfigId" Type="Int32" Nullable="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductWidgetConfig" Relationship="Self.FK_UsersProductWidgetConfig_ProductWidgetConfig" FromRole="UsersProductWidgetConfig" ToRole="ProductWidgetConfig" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UsersProductWidgetConfig_Users" FromRole="UsersProductWidgetConfig" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ViewColumnWidget">
+          <Key>
+            <PropertyRef Name="WidgetID" />
+            <PropertyRef Name="ColumnID" />
+            <PropertyRef Name="WidgetOrder" />
+            <PropertyRef Name="Collapsed" />
+          </Key>
+          <Property Name="WidgetID" Type="Int32" Nullable="false" />
+          <Property Name="ColumnID" Type="Int32" Nullable="false" />
+          <Property Name="WidgetOrder" Type="Int32" Nullable="false" />
+          <Property Name="Collapsed" Type="Boolean" Nullable="false" />
+          <Property Name="Settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductWidgetConfig" Relationship="Self.FK_Widget_ViewColumnWidgets" FromRole="ViewColumnWidgets" ToRole="ProductWidgetConfig" />
+          <NavigationProperty Name="ViewColumn" Relationship="Self.FK_Column_ViewColumnWidgets" FromRole="ViewColumnWidgets" ToRole="ViewColumn" />
+        </EntityType>
+        <EntityType Name="shared_data">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="datetime" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_ProductRegisteredDatabases_Database">
+          <End Role="Databases" Type="Self.Databas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Database_RegisteredProduct" Type="Self.Database_RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Databases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Database_RegisteredProduct">
+              <PropertyRef Name="DatabaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredDatabases_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Database_RegisteredProduct" Type="Self.Database_RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Database_RegisteredProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatabaseID">
+          <End Role="Databases" Type="Self.Databas" Multiplicity="0..1" />
+          <End Role="Audit_Log" Type="Self.Audit_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Databases">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Audit_Log">
+              <PropertyRef Name="DatabaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Databases_Instance">
+          <End Role="Instances" Type="Self.Instance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Databases" Type="Self.Databas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Databases">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredInstances_Instance">
+          <End Role="Instances" Type="Self.Instance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Instance_RegisteredProduct" Type="Self.Instance_RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instance_RegisteredProduct">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductRegisteredInstances_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Instance_RegisteredProduct" Type="Self.Instance_RegisteredProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Instance_RegisteredProduct">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstanceID">
+          <End Role="Instances" Type="Self.Instance" Multiplicity="0..1" />
+          <End Role="Audit_Log" Type="Self.Audit_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Audit_Log">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Instances_Instance">
+          <End Role="Instances" Type="Self.Instance" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permission_Instances" Type="Self.Permission_Instances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instances">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission_Instances">
+              <PropertyRef Name="InstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Licenses_RegisteredProducts">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Licenses" Type="Self.License" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Licenses">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Instances_Permission">
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permission_Instances" Type="Self.Permission_Instances" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Permissions">
+              <PropertyRef Name="PermissionID" />
+            </Principal>
+            <Dependent Role="Permission_Instances">
+              <PropertyRef Name="PermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Products">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Roles">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permissions_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Permissions" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductWidgetConfig">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductWidgetConfig">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProductWidgetConfig_ProductWidgetConfig">
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProductWidgetConfig" Type="Self.UsersProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWidgetConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersProductWidgetConfig">
+              <PropertyRef Name="ProductWidgetConfigId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Widget_ViewColumnWidgets">
+          <End Role="ProductWidgetConfig" Type="Self.ProductWidgetConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumnWidgets" Type="Self.ViewColumnWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductWidgetConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumnWidgets">
+              <PropertyRef Name="WidgetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_Metadata_RegisteredProducts">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alerts_Metadata" Type="Self.Alerts_Metadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Alerts_Metadata">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alerts_Products">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Alerts" Type="Self.Alert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Alerts">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredProductURLs_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RegisteredProductURLs" Type="Self.RegisteredProductURL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RegisteredProductURLs">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roles_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Roles" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_Product">
+          <End Role="RegisteredProducts" Type="Self.RegisteredProduct" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisteredProducts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroups_Group">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserGroups" Type="Self.UserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserGroups">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersProductWidgetConfig_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersProductWidgetConfig" Type="Self.UsersProductWidgetConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersProductWidgetConfig">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Column_ViewColumnWidgets">
+          <End Role="ViewColumn" Type="Self.ViewColumn" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumnWidgets" Type="Self.ViewColumnWidget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewColumn">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumnWidgets">
+              <PropertyRef Name="ColumnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_View_ViewColumn">
+          <End Role="ViewConfig" Type="Self.ViewConfig" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ViewColumn" Type="Self.ViewColumn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewConfig">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ViewColumn">
+              <PropertyRef Name="ViewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RegisteredTag_Databases">
+          <End Role="Databases" Type="Self.Databas" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <Association Name="RegisteredTag_Instances">
+          <End Role="Instances" Type="Self.Instance" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="IderaCWFRepositoryEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Database_RegisteredProduct" EntityType="Self.Database_RegisteredProduct" />
+          <EntitySet Name="Databases" EntityType="Self.Databas" />
+          <EntitySet Name="Instance_RegisteredProduct" EntityType="Self.Instance_RegisteredProduct" />
+          <EntitySet Name="Instances" EntityType="Self.Instance" />
+          <EntitySet Name="Licenses" EntityType="Self.License" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="ProductConfigs" EntityType="Self.ProductConfig" />
+          <EntitySet Name="ProductMigrations" EntityType="Self.ProductMigration" />
+          <EntitySet Name="ProductWidgetConfigs" EntityType="Self.ProductWidgetConfig" />
+          <EntitySet Name="RegisteredProducts" EntityType="Self.RegisteredProduct" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="SSRSReportConfigurations" EntityType="Self.SSRSReportConfiguration" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ViewColumns" EntityType="Self.ViewColumn" />
+          <EntitySet Name="ViewConfigs" EntityType="Self.ViewConfig" />
+          <EntitySet Name="messages" EntityType="Self.message" />
+          <EntitySet Name="versions" EntityType="Self.version" />
+          <EntitySet Name="ActionsPools" EntityType="Self.ActionsPool" />
+          <EntitySet Name="Alerts" EntityType="Self.Alert" />
+          <EntitySet Name="Alerts_Metadata" EntityType="Self.Alerts_Metadata" />
+          <EntitySet Name="Audit_Log" EntityType="Self.Audit_Log" />
+          <EntitySet Name="Permission_Instances" EntityType="Self.Permission_Instances" />
+          <EntitySet Name="RegisteredProductURLs" EntityType="Self.RegisteredProductURL" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+          <EntitySet Name="UsersProductWidgetConfigs" EntityType="Self.UsersProductWidgetConfig" />
+          <EntitySet Name="ViewColumnWidgets" EntityType="Self.ViewColumnWidget" />
+          <EntitySet Name="shared_data" EntityType="Self.shared_data" />
+          <AssociationSet Name="FK_ProductRegisteredDatabases_Database" Association="Self.FK_ProductRegisteredDatabases_Database">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="Database_RegisteredProduct" EntitySet="Database_RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredDatabases_Product" Association="Self.FK_ProductRegisteredDatabases_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Database_RegisteredProduct" EntitySet="Database_RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatabaseID" Association="Self.FK_DatabaseID">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="Audit_Log" EntitySet="Audit_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Databases_Instance" Association="Self.FK_Databases_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Databases" EntitySet="Databases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredInstances_Instance" Association="Self.FK_ProductRegisteredInstances_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Instance_RegisteredProduct" EntitySet="Instance_RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductRegisteredInstances_Product" Association="Self.FK_ProductRegisteredInstances_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Instance_RegisteredProduct" EntitySet="Instance_RegisteredProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstanceID" Association="Self.FK_InstanceID">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Audit_Log" EntitySet="Audit_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Instances_Instance" Association="Self.FK_Permission_Instances_Instance">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Permission_Instances" EntitySet="Permission_Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Licenses_RegisteredProducts" Association="Self.FK_Licenses_RegisteredProducts">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Licenses" EntitySet="Licenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Instances_Permission" Association="Self.FK_Permission_Instances_Permission">
+            <End Role="Permissions" EntitySet="Permissions" />
+            <End Role="Permission_Instances" EntitySet="Permission_Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Products" Association="Self.FK_Permissions_Products">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Roles" Association="Self.FK_Permissions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permissions_Users" Association="Self.FK_Permissions_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductWidgetConfig" Association="Self.FK_Product_ProductWidgetConfig">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProductWidgetConfig_ProductWidgetConfig" Association="Self.FK_UsersProductWidgetConfig_ProductWidgetConfig">
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfigs" />
+            <End Role="UsersProductWidgetConfig" EntitySet="UsersProductWidgetConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Widget_ViewColumnWidgets" Association="Self.FK_Widget_ViewColumnWidgets">
+            <End Role="ProductWidgetConfig" EntitySet="ProductWidgetConfigs" />
+            <End Role="ViewColumnWidgets" EntitySet="ViewColumnWidgets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_Metadata_RegisteredProducts" Association="Self.FK_Alerts_Metadata_RegisteredProducts">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Alerts_Metadata" EntitySet="Alerts_Metadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alerts_Products" Association="Self.FK_Alerts_Products">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Alerts" EntitySet="Alerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredProductURLs_Product" Association="Self.FK_RegisteredProductURLs_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="RegisteredProductURLs" EntitySet="RegisteredProductURLs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Product" Association="Self.FK_Roles_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_Product" Association="Self.FK_Tags_Product">
+            <End Role="RegisteredProducts" EntitySet="RegisteredProducts" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroups_Group" Association="Self.FK_UserGroups_Group">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserGroups" EntitySet="UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersProductWidgetConfig_Users" Association="Self.FK_UsersProductWidgetConfig_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersProductWidgetConfig" EntitySet="UsersProductWidgetConfigs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Column_ViewColumnWidgets" Association="Self.FK_Column_ViewColumnWidgets">
+            <End Role="ViewColumn" EntitySet="ViewColumns" />
+            <End Role="ViewColumnWidgets" EntitySet="ViewColumnWidgets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_View_ViewColumn" Association="Self.FK_View_ViewColumn">
+            <End Role="ViewConfig" EntitySet="ViewConfigs" />
+            <End Role="ViewColumn" EntitySet="ViewColumns" />
+          </AssociationSet>
+          <AssociationSet Name="RegisteredTag_Databases" Association="Self.RegisteredTag_Databases">
+            <End Role="Databases" EntitySet="Databases" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="RegisteredTag_Instances" Association="Self.RegisteredTag_Instances">
+            <End Role="Instances" EntitySet="Instances" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IderaCWFRepositoryModelStoreContainer" CdmEntityContainer="IderaCWFRepositoryEntities2">
+          <EntitySetMapping Name="Database_RegisteredProduct">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Database_RegisteredProduct">
+              <MappingFragment StoreEntitySet="Database-RegisteredProduct">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DatabaseID" ColumnName="DatabaseID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Databases">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Databas">
+              <MappingFragment StoreEntitySet="Databases">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UTCFirstSeen" ColumnName="UTCFirstSeen" />
+                <ScalarProperty Name="UTCLastSeen" ColumnName="UTCLastSeen" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instance_RegisteredProduct">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Instance_RegisteredProduct">
+              <MappingFragment StoreEntitySet="Instance-RegisteredProduct">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instances">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Instance">
+              <MappingFragment StoreEntitySet="Instances">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UTCFirstSeen" ColumnName="UTCFirstSeen" />
+                <ScalarProperty Name="UTCLastSeen" ColumnName="UTCLastSeen" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Licenses">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.License">
+              <MappingFragment StoreEntitySet="Licenses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="KeyString" ColumnName="KeyString" />
+                <ScalarProperty Name="Repository" ColumnName="Repository" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsTrial" ColumnName="IsTrial" />
+                <ScalarProperty Name="IsPermanent" ColumnName="IsPermanent" />
+                <ScalarProperty Name="IsEnterprise" ColumnName="IsEnterprise" />
+                <ScalarProperty Name="LicenseAboutToExpire" ColumnName="LicenseAboutToExpire" />
+                <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+                <ScalarProperty Name="DaysToExpire" ColumnName="DaysToExpire" />
+                <ScalarProperty Name="LicensedServers" ColumnName="LicensedServers" />
+                <ScalarProperty Name="MonitoredServers" ColumnName="MonitoredServers" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="WebURL" ColumnName="WebURL" />
+                <ScalarProperty Name="RestURL" ColumnName="RestURL" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductConfigs">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ProductConfig">
+              <MappingFragment StoreEntitySet="ProductConfig">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMigrations">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ProductMigration">
+              <MappingFragment StoreEntitySet="ProductMigrations">
+                <ScalarProperty Name="AttemptID" ColumnName="AttemptID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MigrationStatus" ColumnName="MigrationStatus" />
+                <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
+                <ScalarProperty Name="MigratedBy" ColumnName="MigratedBy" />
+                <ScalarProperty Name="DestinationHost" ColumnName="DestinationHost" />
+                <ScalarProperty Name="DestinationPort" ColumnName="DestinationPort" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductWidgetConfigs">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ProductWidgetConfig">
+              <MappingFragment StoreEntitySet="ProductWidgetConfig">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WidgetType" ColumnName="WidgetType" />
+                <ScalarProperty Name="NavigationLink" ColumnName="NavigationLink" />
+                <ScalarProperty Name="PackageURI" ColumnName="PackageURI" />
+                <ScalarProperty Name="DataURI" ColumnName="DataURI" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+                <ScalarProperty Name="DefaultViews" ColumnName="DefaultViews" />
+                <ScalarProperty Name="Collapsed" ColumnName="Collapsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredProducts">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.RegisteredProduct">
+              <MappingFragment StoreEntitySet="RegisteredProducts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RegisteringUser" ColumnName="RegisteringUser" />
+                <ScalarProperty Name="RegistrationDateTime" ColumnName="RegistrationDateTime" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InstanceName" ColumnName="InstanceName" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="ConnectionUser" ColumnName="ConnectionUser" />
+                <ScalarProperty Name="ConnectionPassword" ColumnName="ConnectionPassword" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="JarFile" ColumnName="JarFile" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
+                <ScalarProperty Name="RestFile" ColumnName="RestFile" />
+                <ScalarProperty Name="IsLoadable" ColumnName="IsLoadable" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ProductServicesHost" ColumnName="ProductServicesHost" />
+                <ScalarProperty Name="ProductServicesPort" ColumnName="ProductServicesPort" />
+                <ScalarProperty Name="IsMigrating" ColumnName="IsMigrating" />
+                <ScalarProperty Name="MigrationStatus" ColumnName="MigrationStatus" />
+                <ScalarProperty Name="IsTaggable" ColumnName="IsTaggable" />
+                <ScalarProperty Name="IsRedirectable" ColumnName="IsRedirectable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSRSReportConfigurations">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.SSRSReportConfiguration">
+              <MappingFragment StoreEntitySet="SSRSReportConfiguration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReportInstance" ColumnName="ReportInstance" />
+                <ScalarProperty Name="ReportURL" ColumnName="ReportURL" />
+                <ScalarProperty Name="WebServiceURL" ColumnName="WebServiceURL" />
+                <ScalarProperty Name="ReportUserName" ColumnName="ReportUserName" />
+                <ScalarProperty Name="ReportUserPassword" ColumnName="ReportUserPassword" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewColumns">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ViewColumn">
+              <MappingFragment StoreEntitySet="ViewColumn">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ViewID" ColumnName="ViewID" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="ColumnOrder" ColumnName="ColumnOrder" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewConfigs">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ViewConfig">
+              <MappingFragment StoreEntitySet="ViewConfig">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TabOrder" ColumnName="TabOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messages">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.message">
+              <MappingFragment StoreEntitySet="messages">
+                <ScalarProperty Name="message_id" ColumnName="message_id" />
+                <ScalarProperty Name="message1" ColumnName="message" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="versions">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.version">
+              <MappingFragment StoreEntitySet="versions">
+                <ScalarProperty Name="version1" ColumnName="version" />
+                <ScalarProperty Name="ordinal" ColumnName="ordinal" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="upgraded" ColumnName="upgraded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActionsPools">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ActionsPool">
+              <MappingFragment StoreEntitySet="ActionsPool">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Params" ColumnName="Params" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alerts">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Alert">
+              <MappingFragment StoreEntitySet="Alerts">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AlertCategory" ColumnName="AlertCategory" />
+                <ScalarProperty Name="Metric" ColumnName="Metric" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="LastActiveTime" ColumnName="LastActiveTime" />
+                <ScalarProperty Name="Instance" ColumnName="Instance" />
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Table" ColumnName="Table" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alerts_Metadata">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Alerts_Metadata">
+              <MappingFragment StoreEntitySet="Alerts_Metadata">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Metric" ColumnName="Metric" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Preview" ColumnName="Preview" />
+                <ScalarProperty Name="PluralMessage" ColumnName="PluralMessage" />
+                <ScalarProperty Name="PluralPreview" ColumnName="PluralPreview" />
+                <ScalarProperty Name="KB" ColumnName="KB" />
+                <ScalarProperty Name="LinkToWiki" ColumnName="LinkToWiki" />
+                <ScalarProperty Name="LinkToDetails" ColumnName="LinkToDetails" />
+                <ScalarProperty Name="LinkToDashboard" ColumnName="LinkToDashboard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit_Log">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Audit_Log">
+              <MappingFragment StoreEntitySet="Audit_Log">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="TagDescription" ColumnName="TagDescription" />
+                <ScalarProperty Name="TagProductID" ColumnName="TagProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Changes" ColumnName="Changes" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+                <ScalarProperty Name="DatabaseID" ColumnName="DatabaseID" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+                <ScalarProperty Name="SourceProductID" ColumnName="SourceProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permission_Instances">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.Permission_Instances">
+              <MappingFragment StoreEntitySet="Permission_Instances">
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredProductURLs">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.RegisteredProductURL">
+              <MappingFragment StoreEntitySet="RegisteredProductURLs">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="WebURL" ColumnName="WebURL" />
+                <ScalarProperty Name="RestURL" ColumnName="RestURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersProductWidgetConfigs">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.UsersProductWidgetConfig">
+              <MappingFragment StoreEntitySet="UsersProductWidgetConfig">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductWidgetConfigId" ColumnName="ProductWidgetConfigId" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewColumnWidgets">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.ViewColumnWidget">
+              <MappingFragment StoreEntitySet="ViewColumnWidgets">
+                <ScalarProperty Name="WidgetID" ColumnName="WidgetID" />
+                <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+                <ScalarProperty Name="WidgetOrder" ColumnName="WidgetOrder" />
+                <ScalarProperty Name="Collapsed" ColumnName="Collapsed" />
+                <ScalarProperty Name="Settings" ColumnName="Settings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shared_data">
+            <EntityTypeMapping TypeName="IderaCWFRepositoryModel.shared_data">
+              <MappingFragment StoreEntitySet="shared_data">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RegisteredTag_Databases" TypeName="IderaCWFRepositoryModel.RegisteredTag_Databases" StoreEntitySet="RegisteredTag-Databases">
+            <EndProperty Name="Databases">
+              <ScalarProperty Name="ID" ColumnName="DatabaseID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RegisteredTag_Instances" TypeName="IderaCWFRepositoryModel.RegisteredTag_Instances" StoreEntitySet="RegisteredTag-Instances">
+            <EndProperty Name="Instances">
+              <ScalarProperty Name="ID" ColumnName="InstanceID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
